@@ -2,7 +2,7 @@ import { HTTP } from 'meteor/http';
 
 const api = 'https://graph.facebook.com/v2.6/me';
 
-export default subscribeToPage(pageAccessToken){
+export default subscribeBotToPage(pageAccessToken){
   const endpoint = `subscribed_apps`;
   const request = HTTP.post(`${api}/${endpoint}`, {
     query: {
