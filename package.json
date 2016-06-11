@@ -6,7 +6,9 @@
   "main": "src/server.js",
   "browser": "src/client.js",
   "scripts": {
-    "start": "meteor --settings settings.json"
+    "start": "meteor --settings settings.json",
+    "set-env": "modulus env set METEOR_SETTINGS \"$(cat settings.json)\" -p 'botpay'",
+    "deploy": "npm run set-env && modulus deploy -p 'botpay'"
   },
   "dependencies": {
     "lodash": "^4.13.1",
