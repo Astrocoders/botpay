@@ -8,11 +8,11 @@
         "manage_pages"
       ]
     },
-    "fbAppId": "816326641831160"
+    "fbAppId": "115267298897548"
   },
   "facebook": {
     "APP_NAME":  "BotPay",
-    "appId": "816326641831160",
-    "secret": "68346e911f6589bf8ac62af95d98959b"
+    "appId": "115267298897548",
+    "secret": "b4a7cd0efbba82f892a339cd01576975"
   }
 }
