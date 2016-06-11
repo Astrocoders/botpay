@@ -8,9 +8,9 @@ export default class ListPages extends Component {
     return (
       <ul>
         {
-          this.props.pages.map(({name}) =>
+          this.props.pages.map(({name}, index) =>
             <li
-              style="pointer:cursor"
+              key={index}
               onClick=""
             >
               {name}
