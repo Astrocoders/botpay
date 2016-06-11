@@ -22,7 +22,6 @@ export default class FacebookButton extends Component {
   }
 
   render(){
-    console.log('this is happening');
     return (
       <button
         type="submit"
