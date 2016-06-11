@@ -20,6 +20,7 @@ webpack:react
 webpack:css
 webpack:assets
 
+service-configuration
 accounts-facebook
 blaze-html-templates
 standard-minifier-css
