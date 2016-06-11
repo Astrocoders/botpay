@@ -8,7 +8,6 @@ export default class FacebookButton extends Component {
       requestPermissions: Meteor.settings.public.facebook.permissions,
     }, error => {
       if(!error){
-        this.props.handleSuccess();
         return;
       }
 
