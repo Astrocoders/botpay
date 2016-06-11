@@ -1,5 +1,5 @@
 {
-  "name": "kickstart-meteor-react-router",
+  "name": "botpay",
   "private": "true",
   "version": "1.0.0",
   "description": "Kickstart a project with Meteor, React and react-router fast!",
@@ -7,8 +7,7 @@
   "browser": "src/client.js",
   "scripts": {
     "start": "meteor --settings settings.json",
-    "set-env": "modulus env set METEOR_SETTINGS \"$(cat settings.json)\" -p 'botpay'",
-    "deploy": "npm run set-env && modulus deploy -p 'botpay'"
+    "deploy": "DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy botpay.meteorapp.com --settings settings.json"
   },
   "dependencies": {
     "lodash": "^4.13.1",
