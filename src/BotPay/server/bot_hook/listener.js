@@ -1,6 +1,6 @@
 import { Picker } from 'meteor/meteorhacks:picker';
 import bodyParser from 'body-parser';
-// import Pages from '/collections/pages';
+import Pages from '../../collections/pages';
 
 Picker.middleware(bodyParser.json());
 
