@@ -1,17 +1,17 @@
 import React, {Component, PropTypes} from 'react';
 import LoginFacebook from './LoginFacebook';
+import { Meteor } from 'meteor/meteor';
+import ListPages from './ListPages';
 
 export default class MainApp extends Component {
-  propTypes: {
-    user: PropTypes.object,
-  }
-
   render(){
     return (
       <div className="main">
-        <LoginFacebook
-          label="Entrar com Facebook"
-        />
+        {
+           Meteor.userId() ?
+          <ListPages user={Meteor.user()} /> :
+          <LoginFacebook label="Entrar com Facebook"/>
+        }
       </div>
     );
   }
