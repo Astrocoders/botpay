@@ -13,14 +13,14 @@ tracker                 # Meteor's client-side reactive programming library
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 
 react-meteor-data
+themeteorchef:bert
 
 webpack:webpack
 webpack:react
 webpack:css
 webpack:assets
 
-accounts-ui
-accounts-password
+accounts-facebook
 blaze-html-templates
 standard-minifier-css
 standard-minifier-js

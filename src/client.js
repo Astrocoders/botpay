@@ -1,3 +1,3 @@
-import 'TodoApp/client';
+import 'BotPay/client';
 
 import './routes';
