@@ -2,7 +2,7 @@ import { HTTP } from 'meteor/http';
 import querystring from 'querystring';
 
 export function sendTextMessage({sender, text, pageAccessToken}) {
-  const response = HTTP.post('https://graph.facebook.com/v2.6/me/messages', {
+  HTTP.post('https://graph.facebook.com/v2.6/me/messages', {
     params: {
       access_token: pageAccessToken,
     },

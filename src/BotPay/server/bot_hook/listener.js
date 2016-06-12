@@ -32,7 +32,7 @@ Picker.route('/bot_postback', function(params, req, res, next){
       id: pageFbId,
     });
 
-    if (!_.get(event.message, 'text')) {
+    if (!_.has(event.message, 'text')) {
       return false;
     }
 
