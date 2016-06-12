@@ -8,7 +8,6 @@ import Pages from '../collections/pages';
 
 const api = 'https://graph.facebook.com/v2.6/';
 
-
 Meteor.methods({
   fetchPages() {
     if (!this.userId) return;
@@ -69,5 +68,4 @@ Meteor.methods({
       }});
     }
   },
-
 });
