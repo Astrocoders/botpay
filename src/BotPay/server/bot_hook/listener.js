@@ -1,6 +1,5 @@
-import { Picker } from 'meteor/meteorhacks:picker';
 import _ from 'lodash';
-import bodyParser from 'body-parser';
+import { Picker } from 'meteor/meteorhacks:picker';
 import Pages from '../../collections/pages';
 import { HTTP } from 'meteor/http';
 import querystring from 'querystring';
@@ -9,9 +8,6 @@ import {
   sendTextMessage,
   sendTextButtonMessage,
 } from '../lib/messenger';
-
-Picker.middleware(bodyParser.json());
-Picker.middleware( bodyParser.urlencoded( { extended: false } ) );
 
 Picker.route('/bot_postback', function(params, req, res, next){
   if (
