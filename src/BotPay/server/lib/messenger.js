@@ -13,6 +13,27 @@ export function sendTextMessage({sender, text, pageAccessToken}) {
   });
 }
 
+export function sendTextButtonMessage({sender, title, buttons, pageAccessToken}) {
+  HTTP.post('https://graph.facebook.com/v2.6/me/messages', {
+    params: {
+      access_token: pageAccessToken,
+    },
+    data: {
+      recipient: {id:sender},
+      message: {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'button',
+            text: title,
+            buttons: buttons,
+          },
+        },
+      },
+    },
+  });
+}
+
 export function verifyRequest(request, response){
   const queryParsed = querystring.parse(request._parsedUrl.query) || {};
   if(
