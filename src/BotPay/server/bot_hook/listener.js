@@ -1,58 +1,56 @@
 import { Picker } from 'meteor/meteorhacks:picker';
+import _ from 'lodash';
 import bodyParser from 'body-parser';
 import Pages from '../../collections/pages';
 import { HTTP } from 'meteor/http';
+import querystring from 'querystring';
+import {
+  verifyRequest,
+  sendTextMessage,
+} from '../lib/messenger';
 
 Picker.middleware(bodyParser.json());
+Picker.middleware( bodyParser.urlencoded( { extended: false } ) );
 
-Picker.route('/bot_postback', function(req, res){
+Picker.route('/bot_postback', function(params, req, res, next){
   if (
-    req.method === 'GET' &&
-    req.query['hub.verify_token'] === 'i_love_potatoes'
+    req.method === 'GET' 
   ) {
-    res.end(req.query['hub.challenge'])
-    return;
+    verifyRequest(req, res);
+
+    return false;
   }
 
-  const notification = req.body.entry;
-
-  console.log('body', req.body);
-
-  let messaging_events = req.body.entry[0].messaging
+  const messagingEvents = req.body.entry[0].messaging
   const pageFbId = req.body.entry[0].id;
-  for (let i = 0; i < messaging_events.length; i++) {
-    let event = req.body.entry[0].messaging[i]
-    let sender = event.sender.id
-    if (event.message && event.message.text) {
-      const text = event.message.text;
-      const page = Pages.findOne({
-        id: pageFbId,
-      });
+  const payoutPattern = /pagar\s(\d+)\s/g;
+  
+  messagingEvents.forEach(event => {
+    const text = event.message.text;
+    const sender = event.sender.id;
+    const page = Pages.findOne({
+      id: pageFbId,
+    });
 
-      console.log({ page });
+    if (!_.get(event.message, 'text')) {
+      return false;
+    }
 
+    if(!payoutPattern.test(text)){
       sendTextMessage({
         sender,
-        text: `Text received, echo: ${text.substring(0, 200)}`,
+        text: 'Oi, para enviar dinheiro diga "pagar X reais"',
+        pageAccessToken: page.access_token,
+      });
+    } else {
+      sendTextMessage({
+        sender,
+        text: 'Botei fé!',
         pageAccessToken: page.access_token,
       });
     }
-  }
+  });
+
   res.writeHead(200);
   res.end();
 });
-
-function sendTextMessage({sender, text, pageAccessToken}) {
-  const messageData = { text };
-  const response = HTTP.post('https://graph.facebook.com/v2.6/me/messages', {
-    params: {
-      access_token: pageAccessToken,
-    },
-    data: {
-      recipient: {id:sender},
-      message: messageData,
-    },
-  });
-
-  console.log(response);
-}
