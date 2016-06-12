@@ -2,13 +2,34 @@ import { HTTP } from 'meteor/http';
 import querystring from 'querystring';
 
 export function sendTextMessage({sender, text, pageAccessToken}) {
-  const response = HTTP.post('https://graph.facebook.com/v2.6/me/messages', {
+  HTTP.post('https://graph.facebook.com/v2.6/me/messages', {
     params: {
       access_token: pageAccessToken,
     },
     data: {
       recipient: {id:sender},
       message: { text },
+    },
+  });
+}
+
+export function sendTextButtonMessage({sender, title, buttons, pageAccessToken}) {
+  HTTP.post('https://graph.facebook.com/v2.6/me/messages', {
+    params: {
+      access_token: pageAccessToken,
+    },
+    data: {
+      recipient: {id:sender},
+      message: {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'button',
+            text: title,
+            buttons: buttons,
+          },
+        },
+      },
     },
   });
 }

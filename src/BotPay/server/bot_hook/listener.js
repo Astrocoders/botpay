@@ -7,6 +7,7 @@ import querystring from 'querystring';
 import {
   verifyRequest,
   sendTextMessage,
+  sendTextButtonMessage,
 } from '../lib/messenger';
 
 Picker.middleware(bodyParser.json());
@@ -26,15 +27,15 @@ Picker.route('/bot_postback', function(params, req, res, next){
   const payoutPattern = /pagar\s(\d+)\s/g;
   
   messagingEvents.forEach(event => {
+    if (!_.has(event.message, 'text')) {
+      return false;
+    }
+
     const text = event.message.text;
     const sender = event.sender.id;
     const page = Pages.findOne({
       id: pageFbId,
     });
-
-    if (!_.get(event.message, 'text')) {
-      return false;
-    }
 
     if(!payoutPattern.test(text)){
       sendTextMessage({
@@ -43,9 +44,16 @@ Picker.route('/bot_postback', function(params, req, res, next){
         pageAccessToken: page.access_token,
       });
     } else {
-      sendTextMessage({
+      sendTextButtonMessage({
         sender,
-        text: 'Botei fé!',
+        title: 'Clique aqui para efetuar seu pagamento',
+        buttons: [
+          {
+            type: 'web_url',
+            url: 'https://www.google.com',
+            title: 'Pagar com MasterPass',
+          },
+        ],
         pageAccessToken: page.access_token,
       });
     }
