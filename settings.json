@@ -5,7 +5,9 @@
     "facebook": {
       "permissions": [
         "email",
-        "manage_pages"
+        "manage_pages",
+        "publish_pages",
+        "pages_messaging"
       ]
     },
     "fbAppId": "115267298897548"
@@ -14,5 +16,11 @@
     "APP_NAME":  "BotPay",
     "appId": "115267298897548",
     "secret": "b4a7cd0efbba82f892a339cd01576975"
+  },
+
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://botpay:password@ds013414.mlab.com:13414/botpay"
+    }
   }
 }

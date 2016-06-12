@@ -1,19 +1,28 @@
 import React, {Component} from 'react';
 import pagesContainer from '../containers/pages';
+import { Meteor } from 'meteor/meteor';
 
 @pagesContainer
 export default class ListPages extends Component {
+
+  _subscribe(_id) {
+    Meteor.call('subscribeBotToPage', _id);
+  }
+
+  _unsubscribe(_id) {
+    Meteor.call('unSubscribeBotToPage', _id);
+  }
+
   render() {
-    console.log(' this.props.pages',  this.props.pages);
     return (
       <ul>
         {
-          this.props.pages.map(({name}) =>
+          this.props.pages.map(({_id, name, subscribed}, index) =>
             <li
-              style="pointer:cursor"
-              onClick=""
+              key={index}
+              onClick={() => subscribed ? this._unsubscribe(_id) : this._subscribe(_id)}
             >
-              {name}
+              {name} - {subscribed.toString()}
             </li>
           )
         }
