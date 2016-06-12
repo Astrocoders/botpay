@@ -4174,3 +4174,14 @@ ul.notifications {
 .img-logo {
   width: 150px;
   padding: 20px 0 0 20px; }
+
+.fbPageIcon {
+  width: 100px;
+  height: 100px;
+  margin-left: -10px; }
+
+.btn-connect {
+  margin: 30px 0px 30px 10px; }
+
+.btn-disconnect {
+  margin: 30px 30px 10px -8px; }
