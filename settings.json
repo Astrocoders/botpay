@@ -6,7 +6,8 @@
       "permissions": [
         "email",
         "manage_pages",
-        "publish_pages"
+        "publish_pages",
+        "pages_messaging"
       ]
     },
     "fbAppId": "115267298897548"
