@@ -6,6 +6,16 @@ Meteor.publish('userPages', function() {
     fields: {
       name: 1,
       subscribed: 1,
+      avatar: 1,
+    }
+  });
+});
+
+Meteor.publish(null, function() {
+  return Meteor.users.find({_id: this.userId}, {
+    fields: {
+      profile: 1,
+      'services.facebook.id': 1,
     }
   });
 });
