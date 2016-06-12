@@ -1,0 +1,18 @@
+{
+  "public": {
+    "version": "1.0",
+    "env": "development",
+    "facebook": {
+      "permissions": [
+        "email",
+        "manage_pages"
+      ]
+    },
+    "fbAppId": "115267298897548"
+  },
+  "facebook": {
+    "APP_NAME":  "BotPay",
+    "appId": "115267298897548",
+    "secret": "b4a7cd0efbba82f892a339cd01576975"
+  }
+}
