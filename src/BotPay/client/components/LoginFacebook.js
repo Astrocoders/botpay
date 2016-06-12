@@ -8,6 +8,7 @@ export default class FacebookButton extends Component {
       requestPermissions: Meteor.settings.public.facebook.permissions,
     }, error => {
       if(!error){
+        this.props.successHandler();
         return;
       }
 
@@ -24,8 +25,8 @@ export default class FacebookButton extends Component {
     return (
       <button
         type="submit"
-        className="lg"
-        onClick={this.handleFacebookLogin}
+        className="btn btn-primary btn-filled"
+        onClick={this.handleFacebookLogin.bind(this)}
       >
         {this.props.label}
       </button>
