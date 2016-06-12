@@ -46,7 +46,7 @@ Picker.route('/bot_postback', function(params, req, res, next){
         buttons: [
           {
             type: 'web_url',
-            url: 'https://www.google.com',
+            url: 'https://www.simplify.com/commerce/masterPass/index?key=sbpb_YTc4MjNmMTQtZGVmYi00MzY5LTllNmQtYzA1MzliY2I4MjJh&token=',
             title: 'Pagar com MasterPass',
           },
         ],
