@@ -16,7 +16,12 @@ Meteor.methods({
     const endpoint = 'accounts';
     const access_token = Meteor.user().services.facebook.accessToken;
     const response = HTTP.get(`${api}/me/${endpoint}?access_token=${access_token}`);
-    const pages = response.data && response.data.data.map(page => _.pick(page, ['name', 'access_token', 'id']));
+
+    const pages = response.data && response.data.data.map(page => {
+      const obj = _.pick(page, ['name', 'access_token', 'id']);
+      obj.avatar = `https://graph.facebook.com/${page.id}/picture?type=normal`;
+      return obj
+    });
 
     _.each(pages, (page) => {
       const isSave = Pages.find({
